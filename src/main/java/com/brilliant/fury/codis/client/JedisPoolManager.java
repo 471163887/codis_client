@@ -6,7 +6,6 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import io.codis.jodis.JedisResourcePool;
 import java.util.Map;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisException;
@@ -20,32 +19,29 @@ import redis.clients.jedis.exceptions.JedisException;
 @Slf4j
 public class JedisPoolManager {
 
+    private static final String JEDIS_NULL_ERROR = "getResource_fail_jedisPool_is_empty]poolName= ";
+
     private Map<String, JedisResourcePool> jedisResourcePoolMap = Maps.newHashMap();
 
     private String firstPoolName;
 
     public Jedis getJedis() {
-        Optional<Jedis> jedisOptional = getResource(firstPoolName);
-        if (!jedisOptional.isPresent()) {
-            throw new JedisException("[Get_Jedis_Resource_Fail]");
-        }
-        return jedisOptional.get();
+        return getResource(firstPoolName);
     }
 
-    public Optional<Jedis> getResource(String poolName) {
+    public Jedis getResource(String poolName) {
         try {
             JedisResourcePool jedisPool = jedisResourcePoolMap.get(poolName);
             if (null != jedisPool) {
-                return Optional.of(jedisPool.getResource());
-            } else {
-                if (jedisResourcePoolMap.isEmpty()) {
-                    log.info(FLT + "getResource]jedisPool未初始化");
-                }
+                return jedisPool.getResource();
             }
+            String errorMsg = FLT + JEDIS_NULL_ERROR + poolName;
+            log.error(errorMsg);
+            throw new JedisException(errorMsg);
         } catch (Throwable t) {
-            log.error(FLT + "getResource]msg={}", t.getMessage(), t);
+            log.error(FLT + "getResource_fail]msg={}", t.getMessage(), t);
+            throw new JedisException(t);
         }
-        return Optional.empty();
     }
 
     public synchronized void addPool(String poolName, JedisResourcePool jedisPool) {

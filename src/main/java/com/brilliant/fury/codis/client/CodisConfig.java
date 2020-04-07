@@ -24,9 +24,9 @@ public class CodisConfig {
     private String zkProxyDir;
 
     /**
-     * 默认10s
+     * 默认5s
      */
-    private int zkSessionTimeoutMs = 10000;
+    private int zkSessionTimeoutMs = 5000;
 
     private static final String JODIS_PREFIX = "/jodis/";
 

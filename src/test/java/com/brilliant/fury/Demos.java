@@ -2,6 +2,7 @@ package com.brilliant.fury;
 
 import com.brilliant.fury.codis.client.CodisClient;
 import com.brilliant.fury.codis.client.JedisPoolInit;
+import com.brilliant.fury.codis.client.FuryJedis;
 import io.codis.jodis.JedisResourcePool;
 import io.codis.jodis.RoundRobinJedisPool;
 import org.junit.Test;
@@ -14,17 +15,21 @@ public class Demos {
 
     /**
      * CodisClient 使用 Demo
-     * 区别: 不需要使用try语句, 避免Jedis连接泄露。
+     * 优点: 不需要使用try语句, 不需要调用 jedis.close, 避免Jedis连接泄露。
      */
     @Test
     public void codisClientDemo() {
         JedisPoolInit jedisPoolInit = new JedisPoolInit();
         jedisPoolInit.init("127.0.0.1:2181", "codis-demo2");
-
-        CodisClient codisClient = CodisClient.getInstance();
-        codisClient.set("you_are_brilliant", "_is_true");
-        String value = codisClient.get("you_are_brilliant");
+        CodisClient codisClient = new CodisClient("codis-demo2");
+        FuryJedis furyJedis = codisClient.zzjedis();
+        furyJedis.set("you_are_brilliant", "_is_true");
+        String value = furyJedis.get("you_are_brilliant");
         System.out.println(value);
+        String value2 = furyJedis.getSet("you_are_brilliant", "_is_true_2");
+        System.out.println(value2);
+        String value3 = furyJedis.getSet("you_are_brilliant", "_is_true_3");
+        System.out.println(value3);
     }
 
     /**
