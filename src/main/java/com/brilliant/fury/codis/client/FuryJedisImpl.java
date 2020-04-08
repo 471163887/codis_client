@@ -6,19 +6,25 @@ import java.util.Map;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.BinaryClient;
+import redis.clients.jedis.BitOP;
 import redis.clients.jedis.BitPosParams;
+import redis.clients.jedis.DebugParams;
 import redis.clients.jedis.GeoCoordinate;
 import redis.clients.jedis.GeoRadiusResponse;
 import redis.clients.jedis.GeoUnit;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
+import redis.clients.jedis.ZParams;
 import redis.clients.jedis.exceptions.JedisException;
 import redis.clients.jedis.params.geo.GeoRadiusParam;
 import redis.clients.jedis.params.sortedset.ZAddParams;
 import redis.clients.jedis.params.sortedset.ZIncrByParams;
+import redis.clients.util.Slowlog;
 
 /**
  * 注意！使用 CodisClient 之前需要初始化 JedisPoolInit
@@ -784,6 +790,536 @@ public class FuryJedisImpl implements FuryJedis {
 
     @Override
     public List<Long> bitfield(String key, String... arguments) {
+        return null;
+    }
+
+    @Override
+    public List<String> configGet(String pattern) {
+        return null;
+    }
+
+    @Override
+    public String configSet(String parameter, String value) {
+        return null;
+    }
+
+    @Override
+    public String slowlogReset() {
+        return null;
+    }
+
+    @Override
+    public Long slowlogLen() {
+        return null;
+    }
+
+    @Override
+    public List<Slowlog> slowlogGet() {
+        return null;
+    }
+
+    @Override
+    public List<Slowlog> slowlogGet(long entries) {
+        return null;
+    }
+
+    @Override
+    public Long objectRefcount(String string) {
+        return null;
+    }
+
+    @Override
+    public String objectEncoding(String string) {
+        return null;
+    }
+
+    @Override
+    public Long objectIdletime(String string) {
+        return null;
+    }
+
+    @Override
+    public String ping() {
+        return null;
+    }
+
+    @Override
+    public String quit() {
+        return null;
+    }
+
+    @Override
+    public String flushDB() {
+        return null;
+    }
+
+    @Override
+    public Long dbSize() {
+        return null;
+    }
+
+    @Override
+    public String select(int index) {
+        return null;
+    }
+
+    @Override
+    public String flushAll() {
+        return null;
+    }
+
+    @Override
+    public String auth(String password) {
+        return null;
+    }
+
+    @Override
+    public String save() {
+        return null;
+    }
+
+    @Override
+    public String bgsave() {
+        return null;
+    }
+
+    @Override
+    public String bgrewriteaof() {
+        return null;
+    }
+
+    @Override
+    public Long lastsave() {
+        return null;
+    }
+
+    @Override
+    public String shutdown() {
+        return null;
+    }
+
+    @Override
+    public String info() {
+        return null;
+    }
+
+    @Override
+    public String info(String section) {
+        return null;
+    }
+
+    @Override
+    public String slaveof(String host, int port) {
+        return null;
+    }
+
+    @Override
+    public String slaveofNoOne() {
+        return null;
+    }
+
+    @Override
+    public Long getDB() {
+        return null;
+    }
+
+    @Override
+    public String debug(DebugParams params) {
+        return null;
+    }
+
+    @Override
+    public String configResetStat() {
+        return null;
+    }
+
+    @Override
+    public Long waitReplicas(int replicas, long timeout) {
+        return null;
+    }
+
+    @Override
+    public String clusterNodes() {
+        return null;
+    }
+
+    @Override
+    public String clusterMeet(String ip, int port) {
+        return null;
+    }
+
+    @Override
+    public String clusterAddSlots(int... slots) {
+        return null;
+    }
+
+    @Override
+    public String clusterDelSlots(int... slots) {
+        return null;
+    }
+
+    @Override
+    public String clusterInfo() {
+        return null;
+    }
+
+    @Override
+    public List<String> clusterGetKeysInSlot(int slot, int count) {
+        return null;
+    }
+
+    @Override
+    public String clusterSetSlotNode(int slot, String nodeId) {
+        return null;
+    }
+
+    @Override
+    public String clusterSetSlotMigrating(int slot, String nodeId) {
+        return null;
+    }
+
+    @Override
+    public String clusterSetSlotImporting(int slot, String nodeId) {
+        return null;
+    }
+
+    @Override
+    public String clusterSetSlotStable(int slot) {
+        return null;
+    }
+
+    @Override
+    public String clusterForget(String nodeId) {
+        return null;
+    }
+
+    @Override
+    public String clusterFlushSlots() {
+        return null;
+    }
+
+    @Override
+    public Long clusterKeySlot(String key) {
+        return null;
+    }
+
+    @Override
+    public Long clusterCountKeysInSlot(int slot) {
+        return null;
+    }
+
+    @Override
+    public String clusterSaveConfig() {
+        return null;
+    }
+
+    @Override
+    public String clusterReplicate(String nodeId) {
+        return null;
+    }
+
+    @Override
+    public List<String> clusterSlaves(String nodeId) {
+        return null;
+    }
+
+    @Override
+    public String clusterFailover() {
+        return null;
+    }
+
+    @Override
+    public List<Object> clusterSlots() {
+        return null;
+    }
+
+    @Override
+    public String clusterReset(JedisCluster.Reset resetType) {
+        return null;
+    }
+
+    @Override
+    public String readonly() {
+        return null;
+    }
+
+    @Override
+    public Long del(String... keys) {
+        return null;
+    }
+
+    @Override
+    public Long exists(String... keys) {
+        return null;
+    }
+
+    @Override
+    public List<String> blpop(int timeout, String... keys) {
+        return null;
+    }
+
+    @Override
+    public List<String> brpop(int timeout, String... keys) {
+        return null;
+    }
+
+    @Override
+    public List<String> blpop(String... args) {
+        return null;
+    }
+
+    @Override
+    public List<String> brpop(String... args) {
+        return null;
+    }
+
+    @Override
+    public Set<String> keys(String pattern) {
+        return null;
+    }
+
+    @Override
+    public List<String> mget(String... keys) {
+        return null;
+    }
+
+    @Override
+    public String mset(String... keysvalues) {
+        return null;
+    }
+
+    @Override
+    public Long msetnx(String... keysvalues) {
+        return null;
+    }
+
+    @Override
+    public String rename(String oldkey, String newkey) {
+        return null;
+    }
+
+    @Override
+    public Long renamenx(String oldkey, String newkey) {
+        return null;
+    }
+
+    @Override
+    public String rpoplpush(String srckey, String dstkey) {
+        return null;
+    }
+
+    @Override
+    public Set<String> sdiff(String... keys) {
+        return null;
+    }
+
+    @Override
+    public Long sdiffstore(String dstkey, String... keys) {
+        return null;
+    }
+
+    @Override
+    public Set<String> sinter(String... keys) {
+        return null;
+    }
+
+    @Override
+    public Long sinterstore(String dstkey, String... keys) {
+        return null;
+    }
+
+    @Override
+    public Long smove(String srckey, String dstkey, String member) {
+        return null;
+    }
+
+    @Override
+    public Long sort(String key, SortingParams sortingParameters, String dstkey) {
+        return null;
+    }
+
+    @Override
+    public Long sort(String key, String dstkey) {
+        return null;
+    }
+
+    @Override
+    public Set<String> sunion(String... keys) {
+        return null;
+    }
+
+    @Override
+    public Long sunionstore(String dstkey, String... keys) {
+        return null;
+    }
+
+    @Override
+    public String watch(String... keys) {
+        return null;
+    }
+
+    @Override
+    public String unwatch() {
+        return null;
+    }
+
+    @Override
+    public Long zinterstore(String dstkey, String... sets) {
+        return null;
+    }
+
+    @Override
+    public Long zinterstore(String dstkey, ZParams params, String... sets) {
+        return null;
+    }
+
+    @Override
+    public Long zunionstore(String dstkey, String... sets) {
+        return null;
+    }
+
+    @Override
+    public Long zunionstore(String dstkey, ZParams params, String... sets) {
+        return null;
+    }
+
+    @Override
+    public String brpoplpush(String source, String destination, int timeout) {
+        return null;
+    }
+
+    @Override
+    public Long publish(String channel, String message) {
+        return null;
+    }
+
+    @Override
+    public void subscribe(JedisPubSub jedisPubSub, String... channels) {
+
+    }
+
+    @Override
+    public void psubscribe(JedisPubSub jedisPubSub, String... patterns) {
+
+    }
+
+    @Override
+    public String randomKey() {
+        return null;
+    }
+
+    @Override
+    public Long bitop(BitOP op, String destKey, String... srcKeys) {
+        return null;
+    }
+
+    @Override
+    public ScanResult<String> scan(int cursor) {
+        return null;
+    }
+
+    @Override
+    public ScanResult<String> scan(String cursor) {
+        return null;
+    }
+
+    @Override
+    public ScanResult<String> scan(String cursor, ScanParams params) {
+        return null;
+    }
+
+    @Override
+    public String pfmerge(String destkey, String... sourcekeys) {
+        return null;
+    }
+
+    @Override
+    public long pfcount(String... keys) {
+        return 0;
+    }
+
+    @Override
+    public Object eval(String script, int keyCount, String... params) {
+        return null;
+    }
+
+    @Override
+    public Object eval(String script, List<String> keys, List<String> args) {
+        return null;
+    }
+
+    @Override
+    public Object eval(String script) {
+        return null;
+    }
+
+    @Override
+    public Object evalsha(String script) {
+        return null;
+    }
+
+    @Override
+    public Object evalsha(String sha1, List<String> keys, List<String> args) {
+        return null;
+    }
+
+    @Override
+    public Object evalsha(String sha1, int keyCount, String... params) {
+        return null;
+    }
+
+    @Override
+    public Boolean scriptExists(String sha1) {
+        return null;
+    }
+
+    @Override
+    public List<Boolean> scriptExists(String... sha1) {
+        return null;
+    }
+
+    @Override
+    public String scriptLoad(String script) {
+        return null;
+    }
+
+    @Override
+    public List<Map<String, String>> sentinelMasters() {
+        return null;
+    }
+
+    @Override
+    public List<String> sentinelGetMasterAddrByName(String masterName) {
+        return null;
+    }
+
+    @Override
+    public Long sentinelReset(String pattern) {
+        return null;
+    }
+
+    @Override
+    public List<Map<String, String>> sentinelSlaves(String masterName) {
+        return null;
+    }
+
+    @Override
+    public String sentinelFailover(String masterName) {
+        return null;
+    }
+
+    @Override
+    public String sentinelMonitor(String masterName, String ip, int port, int quorum) {
+        return null;
+    }
+
+    @Override
+    public String sentinelRemove(String masterName) {
+        return null;
+    }
+
+    @Override
+    public String sentinelSet(String masterName, Map<String, String> parameterMap) {
         return null;
     }
 }

@@ -11,12 +11,6 @@ import io.codis.jodis.RoundRobinJedisPool;
  */
 public class JedisPoolInit {
 
-    private CodisConfig codisConfig;
-
-    private JedisResourcePool jedisPool;
-
-    private String poolName;
-
     /**
      * 默认使用集群名称作为 poolName.
      */
@@ -34,8 +28,7 @@ public class JedisPoolInit {
     }
 
     public void init(String poolName, CodisConfig codisConfig) {
-        this.poolName = poolName;
-        this.jedisPool = RoundRobinJedisPool.create()
+        JedisResourcePool jedisPool = RoundRobinJedisPool.create()
             .curatorClient(codisConfig.getZkAddr(), codisConfig.getZkSessionTimeoutMs())
             .zkProxyDir(codisConfig.getZkProxyDir())
             .build();

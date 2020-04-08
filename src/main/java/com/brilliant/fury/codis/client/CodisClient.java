@@ -1,6 +1,8 @@
 package com.brilliant.fury.codis.client;
 
 /**
+ * 选择数据源，并绑定Proxy
+ *
  * @author by fury.
  * version 2020/4/7.
  */
@@ -16,7 +18,7 @@ public class CodisClient {
         this.furyJedis = new FuryJedisImpl(poolName);
     }
 
-    public FuryJedis zzjedis() {
+    public FuryJedis furyJedis() {
         CodisClientProxy codisClientProxy = new CodisClientProxy();
         return (FuryJedis) codisClientProxy.bind(furyJedis);
     }

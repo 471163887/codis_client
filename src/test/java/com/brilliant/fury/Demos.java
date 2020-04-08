@@ -22,7 +22,7 @@ public class Demos {
         JedisPoolInit jedisPoolInit = new JedisPoolInit();
         jedisPoolInit.init("127.0.0.1:2181", "codis-demo2");
         CodisClient codisClient = new CodisClient("codis-demo2");
-        FuryJedis furyJedis = codisClient.zzjedis();
+        FuryJedis furyJedis = codisClient.furyJedis();
         furyJedis.set("you_are_brilliant", "_is_true");
         String value = furyJedis.get("you_are_brilliant");
         System.out.println(value);
